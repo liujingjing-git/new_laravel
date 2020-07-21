@@ -4,10 +4,10 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
-class UserModel extends Model
+class FindPassModel extends Model
 {
-    protected $table = 'p_user';
+    protected $table = 'p_findpass';
     protected $guarded = []; 
-    protected $primaryKey = "user_id";
+    protected $primaryKey = "id";
     public $timestamps = false;
 }
