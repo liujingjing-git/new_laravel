@@ -1,7 +1,10 @@
+
 @extends('layouts.shop')
 
-@section('title', '登陆')
+@section('title', '商品详情页')
 @section('content')
+
+
 	<!-- menu -->
 	<div class="menus" id="animatedModal2">
 		<div class="close-animatedModal2 close-icon">
@@ -186,7 +189,7 @@
 						<div class="cart-1">
 							<div class="row">
 								<div class="col s5">
-									<img src="/img/cart-menu1.png" alt="">
+									<img src="img/cart-menu1.png" alt="">
 								</div>
 								<div class="col s7">
 									<h5><a href="">Fashion Men's</a></h5>
@@ -221,7 +224,7 @@
 						<div class="cart-2">
 							<div class="row">
 								<div class="col s5">
-									<img src="/img/cart-menu2.png" alt="">
+									<img src="img/cart-menu2.png" alt="">
 								</div>
 								<div class="col s7">
 									<h5><a href="">Fashion Men's</a></h5>
@@ -286,35 +289,104 @@
 	</div>
 	<!-- end cart menu -->
 
-	
-	<!-- login -->
-	<div class="pages section">
+	<!-- product -->
+	<div class="section product product-list">
 		<div class="container">
 			<div class="pages-head">
-				<h3>LOGIN</h3>
+				<h3>PRODUCT LIST</h3>
 			</div>
-			<div class="login">
-				<div class="row">
-					<form class="col s12" action="{{url('user/logindo')}}" method="post">
-                    @csrf
-						<div class="input-field">
-							<input type="text" class="validate" name="user_name" placeholder="USERNAME" required>
+			<div class="input-field">
+				<select>
+					<option value="">Popular</option>
+					<option value="1">New Product</option>
+					<option value="2">Best Sellers</option>
+					<option value="3">Best Reviews</option>
+					<option value="4">Low Price</option>
+					<option value="5">High Price</option>
+				</select>
+			</div>
+			<div class="row">
+				<div class="col s6">
+					<div class="content">
+						<img src="img/product-new1.png" alt="">
+						<h6><a href="">Fashion Men's</a></h6>
+						<div class="price">
+							$20 <span>$28</span>
 						</div>
-						<div class="input-field">
-							<input type="password" class="validate" name="user_email" placeholder="PASSWORD" required>
-						</div>
-						<a href=""><h6>忘记密码 ?</h6></a>
-						<input type="submit" value="LOGIN">
-					</form>
+						<button class="btn button-default">ADD TO CART</button>
+					</div>
 				</div>
+				<div class="col s6">
+					<div class="content">
+						<img src="img/product-new2.png" alt="">
+						<h6><a href="">Fashion Men's</a></h6>
+						<div class="price">
+							$20 <span>$28</span>
+						</div>
+						<button class="btn button-default">ADD TO CART</button>
+					</div>
+				</div>
+			</div>
+			<div class="row margin-bottom">
+				<div class="col s6">
+					<div class="content">
+						<img src="img/product-new3.png" alt="">
+						<h6><a href="">Fashion Men's</a></h6>
+						<div class="price">
+							$20 <span>$28</span>
+						</div>
+						<button class="btn button-default">ADD TO CART</button>
+					</div>
+				</div>
+				<div class="col s6">
+					<div class="content">
+						<img src="img/product-new4.png" alt="">
+						<h6><a href="">Fashion Men's</a></h6>
+						<div class="price">
+							$20 <span>$28</span>
+						</div>
+						<button class="btn button-default">ADD TO CART</button>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col s6">
+					<div class="content">
+						<img src="img/product-new3.png" alt="">
+						<h6><a href="">Fashion Men's</a></h6>
+						<div class="price">
+							$20 <span>$28</span>
+						</div>
+						<button class="btn button-default">ADD TO CART</button>
+					</div>
+				</div>
+				<div class="col s6">
+					<div class="content">
+						<img src="img/product-new4.png" alt="">
+						<h6><a href="">Fashion Men's</a></h6>
+						<div class="price">
+							$20 <span>$28</span>
+						</div>
+						<button class="btn button-default">ADD TO CART</button>
+					</div>
+				</div>
+			</div>	
+			<div class="pagination-product">
+				<ul>
+					<li class="active">1</li>
+					<li><a href="">2</a></li>
+					<li><a href="">3</a></li>
+					<li><a href="">4</a></li>
+					<li><a href="">5</a></li>
+				</ul>
 			</div>
 		</div>
 	</div>
-	<!-- end login -->
+	<!-- end product -->
+
 	
 	<!-- loader -->
 	<div id="fakeLoader"></div>
 	<!-- end loader -->
 	
-
-	@endsection
+    @endsection
