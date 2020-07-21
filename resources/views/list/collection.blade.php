@@ -1,7 +1,9 @@
 @extends('layouts.shop')
 
-@section('title', '登陆')
+@section('title', '收藏页')
 @section('content')
+
+
 	<!-- menu -->
 	<div class="menus" id="animatedModal2">
 		<div class="close-animatedModal2 close-icon">
@@ -186,7 +188,7 @@
 						<div class="cart-1">
 							<div class="row">
 								<div class="col s5">
-									<img src="/img/cart-menu1.png" alt="">
+									<img src="img/cart-menu1.png" alt="">
 								</div>
 								<div class="col s7">
 									<h5><a href="">Fashion Men's</a></h5>
@@ -221,7 +223,7 @@
 						<div class="cart-2">
 							<div class="row">
 								<div class="col s5">
-									<img src="/img/cart-menu2.png" alt="">
+									<img src="img/cart-menu2.png" alt="">
 								</div>
 								<div class="col s7">
 									<h5><a href="">Fashion Men's</a></h5>
@@ -285,36 +287,115 @@
 		</div>
 	</div>
 	<!-- end cart menu -->
-
 	
-	<!-- login -->
-	<div class="pages section">
+	<!-- wishlist -->
+	<div class="wishlist section">
 		<div class="container">
 			<div class="pages-head">
-				<h3>LOGIN</h3>
+				<h3>WISHLIST</h3>
 			</div>
-			<div class="login">
-				<div class="row">
-					<form class="col s12" action="{{url('user/logindo')}}" method="post">
-                    @csrf
-						<div class="input-field">
-							<input type="text" class="validate" name="user_name" placeholder="USERNAME" required>
+			<div class="content">
+				<div class="cart-1">
+					<div class="row">
+						<div class="col s5">
+							<h5>Image</h5>
 						</div>
-						<div class="input-field">
-							<input type="password" class="validate" name="user_email" placeholder="PASSWORD" required>
+						<div class="col s7">
+							<img src="img/wishlist1.png" alt="">
 						</div>
-						<a href=""><h6>忘记密码 ?</h6></a>
-						<input type="submit" value="LOGIN">
-					</form>
+					</div>
+					<div class="row">
+						<div class="col s5">
+							<h5>Name</h5>
+						</div>
+						<div class="col s7">
+							<h5><a href="">Fashion Men's</a></h5>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col s5">
+							<h5>Stock Status</h5>
+						</div>
+						<div class="col s7">
+							<h5>In Stock</h5>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col s5">
+							<h5>Price</h5>
+						</div>
+						<div class="col s7">
+							<h5>$20</h5>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col s5">
+							<h5>Action</h5>
+						</div>
+						<div class="col s7">
+							<h5><i class="fa fa-trash"></i></h5>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col 12">
+							<button class="btn button-default">SEND TO CART</button>
+						</div>
+					</div>
+				</div>
+				<div class="divider"></div>
+				<div class="cart-2">
+					<div class="row">
+						<div class="col s5">
+							<h5>Image</h5>
+						</div>
+						<div class="col s7">
+							<img src="img/wishlist2.png" alt="">
+						</div>
+					</div>
+					<div class="row">
+						<div class="col s5">
+							<h5>Name</h5>
+						</div>
+						<div class="col s7">
+							<h5><a href="">Fashion Men's</a></h5>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col s5">
+							<h5>Stock Status</h5>
+						</div>
+						<div class="col s7">
+							<h5>In Stock</h5>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col s5">
+							<h5>Price</h5>
+						</div>
+						<div class="col s7">
+							<h5>$20</h5>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col s5">
+							<h5>Action</h5>
+						</div>
+						<div class="col s7">
+							<h5><i class="fa fa-trash"></i></h5>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col 12">
+							<button class="btn button-default">SEND TO CART</button>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	<!-- end login -->
-	
+	<!-- end wishlist -->
+
 	<!-- loader -->
 	<div id="fakeLoader"></div>
 	<!-- end loader -->
-	
-
-	@endsection
+    @endsection

@@ -8,6 +8,14 @@ use App\Model\UserModel;
 class UserController extends Controller
 {
     /**
+     * 首页
+     */
+    public function index()
+    {
+        return view('index');
+    }
+    
+    /**
      * 注册
      */
     public function register()
