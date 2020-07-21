@@ -21,7 +21,7 @@ Route::post('/user/logindo','UserController@login_do'); //执行登录
 
 //首页
 Route::get('/','IndexController@index');
-
+Route::get('/test','IndexController@test');
 
 //购物车
 Route::get('/cart','CartController@cart'); //购物车
