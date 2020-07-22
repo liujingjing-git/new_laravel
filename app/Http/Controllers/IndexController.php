@@ -10,7 +10,7 @@ class IndexController extends Controller
 {
     public function index(){
         $list=GoodsModel::get();
-        dd($list);
+        //dd($list);
         return view('index');
     }
 }

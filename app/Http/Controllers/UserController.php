@@ -177,4 +177,20 @@ class UserController extends Controller
         echo "密码重置成功";
 
     }
+
+    /**
+     * 修改密码
+     */
+    public function changepass()
+    {
+        return view('user/changepass');
+    }
+    /**
+     * 执行修改密码
+     */
+    public function dochangepass()
+    {
+        $post = request()->except('_token'); 
+        
+    }
 }
