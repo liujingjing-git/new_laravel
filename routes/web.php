@@ -32,12 +32,13 @@ Route::get('/test','IndexController@test');
 
 //购物车
 Route::get('/cart','CartController@cart'); //购物车
-Route::get('/detail','CartController@detail'); //商品详情页
+Route::get('/detail/{goods_id}','CartController@detail'); //商品详情页
 Route::get('/product','CartController@product'); //商品列表
 
 
 //我的收藏
 Route::get('/collection','ListController@collection'); //收藏页
-Route::get('blog','ListController@blog');//;历史记录
+Route::get('/blog','ListController@blog');//;历史记录
+Route::post('/comments','ListController@comments');  //添加评论
 
 
