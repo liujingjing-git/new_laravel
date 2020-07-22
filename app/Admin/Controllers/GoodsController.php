@@ -35,7 +35,7 @@ class GoodsController extends AdminController
         $grid->column('shop_price', __('Shop price'));
         $grid->column('keywords', __('Keywords'));
         $grid->column('goods_desc', __('Goods desc'));
-        $grid->column('goods_img', __('Goods img'))->image('goods_img', 100, 100);
+        $grid->column('goods_img', __('Goods img'))->image();
         $grid->column('add_time', __('Add time'));
         $grid->column('is_delete', __('Is delete'));
         $grid->column('sale_num', __('Sale num'));

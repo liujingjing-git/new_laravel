@@ -21,6 +21,8 @@ class IndexController extends Controller
 
 
 
+
+
     public function test(){
         $menu=GoodsModel::select('goods_name')->limit(4);
         dd($menu);
