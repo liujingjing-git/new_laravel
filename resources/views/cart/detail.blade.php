@@ -342,6 +342,7 @@
 					<div class="row">
 						<form class="col s12 form-details" action="{{url('comments')}}" method="post">
 						@csrf
+						<input type="hidden" name="goods_id" value="{{$goods->goods_id}}">
 							<div class="input-field">
 								<input type="text" required class="validate" name="user" placeholder="用户名">
 							</div>

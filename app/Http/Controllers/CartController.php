@@ -21,7 +21,7 @@ class CartController extends Controller
      */
     public function detail($goods_id)
     {
-        $comment = CommentsModel::orderBy('add_time','DESC')->first();
+        $comment = CommentsModel::where(['goods_id'=>$goods_id])->orderBy('add_time','DESC')->first();
         $goods = GoodsModel::find($goods_id);
         return view('cart/detail',['goods'=>$goods,'data'=>$comment]);
     }

@@ -42,9 +42,11 @@ class ListController extends Controller
         ];
         $res = CommentsModel::insertGetId($data);
         if($res>0){
-            echo "<script>alert('评论成功',location='/detail')</script>";
+            echo "评论成功";
+            header("refresh:1;url=/detail/".$goods_id);
         }else{
-            echo "<script>alert('网络异常,请稍后重试...');</script>";
+            echo "网络异常,请稍后重试...";
+            header("refresh:1;url=/detail/".$goods_id);
         }
     }
 }
