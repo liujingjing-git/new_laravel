@@ -76,7 +76,7 @@
 				</div>
 				<div class="row">
 					<div class="col s4">
-						<a href="blog.html" class="button-link">	
+						<a href="blog.html" class="button-link">
 							<div class="menu-link">
 								<div class="icon">
 									<i class="fa fa-bold"></i>
@@ -86,7 +86,7 @@
 						</a>
 					</div>
 					<div class="col s4">
-						<a href="blog-single.html" class="button-link">	
+						<a href="blog-single.html" class="button-link">
 							<div class="menu-link">
 								<div class="icon">
 									<i class="fa fa-file-text-o"></i>
@@ -187,7 +187,7 @@
 						<div class="cart-1">
 							<div class="row">
 								<div class="col s5">
-									<img src="img/cart-menu1.png" alt="">
+									<img src="/static/index/img/cart-menu1.png" alt="">
 								</div>
 								<div class="col s7">
 									<h5><a href="">Fashion Men's</a></h5>
@@ -222,7 +222,7 @@
 						<div class="cart-2">
 							<div class="row">
 								<div class="col s5">
-									<img src="img/cart-menu2.png" alt="">
+									<img src="/static/index/img/cart-menu2.png" alt="">
 								</div>
 								<div class="col s7">
 									<h5><a href="">Fashion Men's</a></h5>
@@ -287,20 +287,29 @@
 	</div>
 	<!-- end cart menu -->
 
-	
+
 	<!-- single post -->
 	<div class="pages section">
 		<div class="container">
 			<div class="blog-single">
-				<img src="img/blog1.png" alt="">
+				<img src="{{$goods->goods_img}}" alt="">
 				<div class="blog-single-content">
-					<h5>Fashion Men's</h5>
+					<h5>{{$goods->goods_name}}</h5>
 					<div class="date">
 						<span><i class="fa fa-calendar"></i> Dec 22, 2018</span>
 					</div>
+                    <tr>
+                        <th><strong class="orange">￥{{$goods->shop_price}}</strong></th>
+
+                    </tr>
 					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi error quibusdam culpa assumenda maiores ea dicta fuga a itaque rerum deserunt, incidunt, nulla, vero amet sapiente reiciendis. Perspiciatis debitis, accusamus? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus eligendi porro deleniti quisquam omnis rem quibusdam corporis alias, et quae, assumenda unde pariatur vitae placeat veritatis nam quia, velit delectus.</p>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint ut vitae recusandae perferendis, temporibus, ullam, tenetur eius necessitatibus aliquam sequi, eum atque ratione ipsam in aliquid vero numquam id minus!</p>	
-					<div class="share-post">	
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint ut vitae recusandae perferendis, temporibus, ullam, tenetur eius necessitatibus aliquam sequi, eum atque ratione ipsam in aliquid vero numquam id minus!</p>
+
+                    <div class="form-button">
+                        <div class="btn button-default cart">加入购物车</div>
+                    </div>
+
+                    <div class="share-post">
 						<ul>
 							<li><a href=""><i class="fa fa-facebook"></i></a></li>
 							<li><a href=""><i class="fa fa-twitter"></i></a></li>
@@ -352,13 +361,25 @@
 					</div>
 				</div>
 			</div>
-		</div>	
+		</div>
 	</div>
 	<!-- end single post -->
-	
+
 
 	<!-- loader -->
 	<div id="fakeLoader"></div>
 	<!-- end loader -->
-	
+
+    <script src="/js/jquery.min.js"></script>
+    <script>
+        //加入购物车
+        $(".cart").click(function(){
+            //alert(111);
+            var goods_id = {{$goods->goods_id}};
+
+            $.get("/cart",{'goods_id':goods_id},function(result){
+                    alert(result);
+            });
+        });
+    </script>
     @endsection
