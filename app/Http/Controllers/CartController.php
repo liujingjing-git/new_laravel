@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Model\CommentsModel;
 
 class CartController extends Controller
 {
@@ -18,7 +19,8 @@ class CartController extends Controller
      */
     public function detail()
     {
-        return view('cart/detail');
+        $comment = CommentsModel::orderBy('add_time','DESC')->first();
+        return view('cart/detail',['data'=>$comment]);
     }
     /**
      * 商品列表

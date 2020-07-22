@@ -1,7 +1,7 @@
 
 @extends('layouts.shop')
 
-@section('title', '商品详情页')
+@section('title', '商品列表')
 @section('content')
 
 
