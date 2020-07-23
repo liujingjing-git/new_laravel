@@ -318,43 +318,47 @@
 						</ul>
 					</div>
 				</div>
-                <div class="comment">
-                    <h5>1 Comments</h5>
-                    <div class="comment-details">
-                        <div class="row">
-                            <div class="col s3">
-                                <img src="/img/user-comment.jpg" alt="">
-                            </div>
-                            <div class="col s9">
-                                <div class="comment-title">
-                                    <span><strong>John Doe</strong> | Juni 5, 2016 at 9:24 am | <a href="">Reply</a></span>
-                                </div>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis accusantium corrupti asperiores et praesentium dolore.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="comment-form">
+
+
+				<div class="comment">
+					<h5>1条评论</h5>
+					<div class="comment-details">
+						<div class="row">
+							<div class="col s3">
+								<img src="img/user-comment.jpg" alt="">
+							</div>
+							<div class="col s9">
+								<div class="comment-title">
+									<span><strong>{{$data['user']}}</strong> | {{date('Y-m-d H:i:s',$data['add_time'])}} | <p><b>{{$data['subject']}}</b></p></span>
+								</div>
+								<p>{{$data['content']}}</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="comment-form">
 					<div class="comment-head">
-						<h5>Post Comment in Below</h5>
-						<p>Lorem ipsum dolor sit amet consectetur*</p>
+						<h5>在下面发表评论</h5>
+						<p>对于现况的不满，你不能只是抱怨，而是要有勇气作出改变。</p>
 					</div>
 					<div class="row">
-						<form class="col s12 form-details">
+						<form class="col s12 form-details" action="{{url('comments')}}" method="post">
+						@csrf
+						<input type="hidden" name="goods_id" value="{{$goods->goods_id}}">
 							<div class="input-field">
-								<input type="text" required class="validate" placeholder="NAME">
+								<input type="text" required class="validate" name="user" placeholder="用户名">
 							</div>
 							<div class="input-field">
-								<input type="email" class="validate" placeholder="EMAIL" required>
+								<input type="email" class="validate" name="email" placeholder="邮箱" required>
 							</div>
 							<div class="input-field">
-								<input type="text" class="validate" placeholder="SUBJECT" required>
+								<input type="text" class="validate" name="subject" placeholder="主题" required>
 							</div>
 							<div class="input-field">
-								<textarea name="textarea-message" id="textarea1" cols="30" rows="10" class="materialize-textarea" class="validate" placeholder="YOUR COMMENT"></textarea>
+								<textarea id="textarea1" cols="30" rows="10" name="content" class="materialize-textarea" class="validate" placeholder="内容"></textarea>
 							</div>
 							<div class="form-button">
-								<div class="btn button-default">POST COMMENTS</div>
+								<input class="btn button-default" value="发表评论" type="submit">
 							</div>
 						</form>
 					</div>

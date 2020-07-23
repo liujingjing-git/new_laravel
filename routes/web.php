@@ -18,12 +18,13 @@ Route::get('/user/reg','UserController@register'); //注册
 Route::post('/user/regdo','UserController@register_do'); //执行注册
 Route::get('/user/login','UserController@login'); //登录
 Route::post('/user/logindo','UserController@login_do'); //执行登录
+Route::any('/user/login_out','UserController@login_out'); //退出登录
 Route::get('/user/vfindpass','UserController@vfindpass'); //找回密码
 Route::post('/user/findpass','UserController@findpass'); //找回密码
 Route::get('/user/resetpass','UserController@vresetpass'); //重置密码
 Route::post('/user/resetpass','UserController@resetpass'); //重置密码
-
-
+Route::get('/user/changepass','UserController@changepass'); //修改密码
+Route::post('/user/dochangepass','UserController@dochangepass'); //执行修改密码
 
 
 //首页
@@ -38,6 +39,7 @@ Route::get('/product','CartController@product'); //商品列表
 
 //我的收藏
 Route::get('/collection','ListController@collection'); //收藏页
-Route::get('blog','ListController@blog');//;历史记录
+Route::get('/blog','ListController@blog');//;历史记录
+Route::post('/comments','ListController@comments');  //添加评论
 
 
