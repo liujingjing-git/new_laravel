@@ -317,7 +317,7 @@
 							<li><a href=""><i class="fa fa-linkedin"></i></a></li>
 						</ul>
 					</div>
-				</div>	
+				</div>
 				<div class="comment">
 					<h5>1条评论</h5>
 					<div class="comment-details">
@@ -333,7 +333,7 @@
 							</div>
 						</div>
 					</div>
-				</div>	
+				</div>
 				<div class="comment-form">
 					<div class="comment-head">
 						<h5>在下面发表评论</h5>
@@ -379,7 +379,7 @@
             var goods_id = {{$goods->goods_id}};
 
             $.get("/cart",{'goods_id':goods_id},function(result){
-                    alert(result);
+
             });
         });
     </script>
