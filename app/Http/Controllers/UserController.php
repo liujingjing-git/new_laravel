@@ -65,13 +65,10 @@ class UserController extends Controller
         $user_name = request()->input('user_name');
         $password  = request()->input('password');
         $u = UserModel::where(['user_name'=>$user_name])->orWhere(['user_email'=>$user_name])->first();
-        
-       
-        
         if($u == NULL)
         {
             header("refresh:3;url=/user/login");
-            echo "该用户不存在";
+            echo "该用户不存在";die;
         }
         
         // $password  = request()->input('password');
@@ -79,9 +76,21 @@ class UserController extends Controller
         //     echo "密码有误";
         //     die;
         // }
+        //存session
+        session(['user_name' => $u['user_name']]);
         
         header("refresh:3;url=/");
-         echo "登录成功 正在跳转至首页...";
+        echo "登录成功 正在跳转至首页...";
+    }
+
+    /**
+     * 退出登录
+     */
+    public function login_out()
+    {
+        $a = session(['user_name'=>null]);
+        header("refresh:3;url=/");
+        echo "退出成功...";
     }
 
     /**
@@ -191,6 +200,5 @@ class UserController extends Controller
     public function dochangepass()
     {
         $post = request()->except('_token'); 
-        
     }
 }

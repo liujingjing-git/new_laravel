@@ -18,6 +18,7 @@ Route::get('/user/reg','UserController@register'); //注册
 Route::post('/user/regdo','UserController@register_do'); //执行注册
 Route::get('/user/login','UserController@login'); //登录
 Route::post('/user/logindo','UserController@login_do'); //执行登录
+Route::any('/user/login_out','UserController@login_out'); //退出登录
 Route::get('/user/vfindpass','UserController@vfindpass'); //找回密码
 Route::post('/user/findpass','UserController@findpass'); //找回密码
 Route::get('/user/resetpass','UserController@vresetpass'); //重置密码
