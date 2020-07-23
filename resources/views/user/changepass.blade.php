@@ -1,6 +1,6 @@
 @extends('layouts.shop')
 
-@section('title', '登陆')
+@section('title', '修改密码')
 @section('content')
 	<!-- menu -->
 	<div class="menus" id="animatedModal2">
@@ -291,25 +291,17 @@
 	<div class="pages section">
 		<div class="container">
 			<div class="pages-head">
-				<h3>LOGIN</h3>
+				<h3>UPDATE-PASS</h3>
 			</div>
 			<div class="login">
 				<div class="row">
-					<form class="col s12" action="{{url('user/logindo')}}" method="post">
+					<form class="col s12" action="{{url('user/dochangepass')}}" method="post">
                     @csrf
 						<div class="input-field">
-							<input type="text" class="validate" name="user_name" placeholder="USERNAME" required>
+							<input type="password" class="validate" name="password" placeholder="请输入旧密码" required>
+							<input type="password" class="validate" name="update_pass" placeholder="请输入新密码" required>
 						</div>
-						<div class="input-field">
-							<input type="password" class="validate" name="user_email" placeholder="PASSWORD" required>
-						</div>
-						<a href="{{url('user/vfindpass')}}">
-							<h6>忘记密码 ?</h6>
-						</a> <br>
-						<a href="{{url('user/changepass')}}">
-							<h6>修改密码 ?</h6>
-						</a>
-						<input type="submit" value="LOGIN">
+						<input type="submit" value="修改">
 					</form>
 				</div>
 			</div>
