@@ -30,7 +30,7 @@ class CartController extends Controller
      */
     public function product()
     {
-       $prolist=GoodsModel::orderby('goods_id','DESC')->limit(6)->get();
+       $prolist=GoodsModel::orderby('goods_id','DESC')->paginate(6);;
         return view('cart/product',['prolist'=>$prolist]);
     }
 }

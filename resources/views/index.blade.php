@@ -387,7 +387,7 @@
                 @foreach($is_new as $v)
                 <div class="col s6">
                     <div class="content">
-                        <a href="/detail"> <img src="{{$v->goods_img}}" alt=""></a>
+                        <a href="{{url('/detail/'.$v->goods_id)}}"> <img src="{{$v->goods_img}}" alt=""></a>
                         <h6><a href="">{{$v->goods_name}}</a></h6>
                         <div class="price">
                             ${{$v->shop_price}} <span></span>

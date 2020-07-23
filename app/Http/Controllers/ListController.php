@@ -27,10 +27,13 @@ class ListController extends Controller
      */
     public function comments(Request $request)
     {
+
         $user = $request->input('user');
         $email = $request->input('email');
         $subject = $request->input('subject');
         $content = $request->input('content');
+        $goods_id = $request->input('goods_id');
+
         $add_time = time();
         // TODO 判断是否登陆
         $data = [
@@ -38,7 +41,8 @@ class ListController extends Controller
             'email' => $email,
             'subject'   => $subject,
             'content'   => $content,
-            'add_time'  => $add_time
+            'add_time'  => $add_time,
+            'goods_id' => $goods_id
         ];
         $res = CommentsModel::insertGetId($data);
         if($res>0){
