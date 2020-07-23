@@ -28,7 +28,7 @@ Route::post('/user/resetpass','UserController@resetpass'); //重置密码
 
 //首页
 Route::get('/','IndexController@index');
-Route::get('/test','IndexController@test');
+//Route::get('/test','IndexController@test');
 
 //购物车
 Route::get('/cart','CartController@cart'); //购物车

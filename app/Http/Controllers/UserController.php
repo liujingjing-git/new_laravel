@@ -7,7 +7,7 @@ use App\Model\UserModel;
 use App\Model\FindPassModel;
 use App\Model\FindpassModel as ps;
 use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Hash;  
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
@@ -19,7 +19,7 @@ class UserController extends Controller
     {
         return view('index');
     }
-    
+
     /**
      * 注册
      */
@@ -36,7 +36,7 @@ class UserController extends Controller
         $user_email = request()->input('user_email');
         $password   = request()->input('password');
         //加密
-        $password = password_hash($password,PASSWORD_BCRYPT); 
+        $password = password_hash($password,PASSWORD_BCRYPT);
         //入库
         $user_data = [
            'user_name' => $user_name,
@@ -65,21 +65,21 @@ class UserController extends Controller
         $user_name = request()->input('user_name');
         $password  = request()->input('password');
         $u = UserModel::where(['user_name'=>$user_name])->orWhere(['user_email'=>$user_name])->first();
-        
-       
-        
+
+
+
         if($u == NULL)
         {
             header("refresh:3;url=/user/login");
             echo "该用户不存在";
         }
-        
+
         // $password  = request()->input('password');
         // if (!Hash::check($password, $u['password'])) {
         //     echo "密码有误";
         //     die;
         // }
-        
+
         header("refresh:3;url=/");
          echo "登录成功 正在跳转至首页...";
     }
@@ -117,7 +117,7 @@ class UserController extends Controller
             ];
             Mail::send('email.findpass',$data,function($message){
                 $to = [
-                    '1807578838@qq.com',
+                    '918903531@qq.com',
                 ];
                 $message->to($to)->subject('密码重置');
             });
@@ -141,7 +141,7 @@ class UserController extends Controller
         ];
 
         return view('user/resetpass',$data);
-    }    
+    }
     /**
      * 重置密码
      */

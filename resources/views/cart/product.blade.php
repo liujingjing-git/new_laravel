@@ -78,7 +78,7 @@
 				</div>
 				<div class="row">
 					<div class="col s4">
-						<a href="blog.html" class="button-link">	
+						<a href="blog.html" class="button-link">
 							<div class="menu-link">
 								<div class="icon">
 									<i class="fa fa-bold"></i>
@@ -88,7 +88,7 @@
 						</a>
 					</div>
 					<div class="col s4">
-						<a href="blog-single.html" class="button-link">	
+						<a href="blog-single.html" class="button-link">
 							<div class="menu-link">
 								<div class="icon">
 									<i class="fa fa-file-text-o"></i>
@@ -306,87 +306,27 @@
 				</select>
 			</div>
 			<div class="row">
-				<div class="col s6">
-					<div class="content">
-						<img src="img/product-new1.png" alt="">
-						<h6><a href="">Fashion Men's</a></h6>
-						<div class="price">
-							$20 <span>$28</span>
-						</div>
-						<button class="btn button-default">ADD TO CART</button>
-					</div>
-				</div>
-				<div class="col s6">
-					<div class="content">
-						<img src="img/product-new2.png" alt="">
-						<h6><a href="">Fashion Men's</a></h6>
-						<div class="price">
-							$20 <span>$28</span>
-						</div>
-						<button class="btn button-default">ADD TO CART</button>
-					</div>
-				</div>
+                @foreach($prolist as $v)
+                    <div class="col s6">
+                        <div class="content">
+                            <a href="/detail"> <img src="{{$v->goods_img}}" alt=""></a>
+                            <h6><a href="">{{$v->goods_name}}</a></h6>
+                            <div class="price">
+                                ${{$v->shop_price}} <span></span>
+                            </div>
+                            <a href="/cart"><button class="btn button-default">加入购物车</button></a>
+                        </div>
+                    </div>
+                @endforeach
 			</div>
-			<div class="row margin-bottom">
-				<div class="col s6">
-					<div class="content">
-						<img src="img/product-new3.png" alt="">
-						<h6><a href="">Fashion Men's</a></h6>
-						<div class="price">
-							$20 <span>$28</span>
-						</div>
-						<button class="btn button-default">ADD TO CART</button>
-					</div>
-				</div>
-				<div class="col s6">
-					<div class="content">
-						<img src="img/product-new4.png" alt="">
-						<h6><a href="">Fashion Men's</a></h6>
-						<div class="price">
-							$20 <span>$28</span>
-						</div>
-						<button class="btn button-default">ADD TO CART</button>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col s6">
-					<div class="content">
-						<img src="img/product-new3.png" alt="">
-						<h6><a href="">Fashion Men's</a></h6>
-						<div class="price">
-							$20 <span>$28</span>
-						</div>
-						<button class="btn button-default">ADD TO CART</button>
-					</div>
-				</div>
-				<div class="col s6">
-					<div class="content">
-						<img src="img/product-new4.png" alt="">
-						<h6><a href="">Fashion Men's</a></h6>
-						<div class="price">
-							$20 <span>$28</span>
-						</div>
-						<button class="btn button-default">ADD TO CART</button>
-					</div>
-				</div>
-			</div>	
-			<div class="pagination-product">
-				<ul>
-					<li class="active">1</li>
-					<li><a href="">2</a></li>
-					<li><a href="">3</a></li>
-					<li><a href="">4</a></li>
-					<li><a href="">5</a></li>
-				</ul>
-			</div>
+             {{ $prolist->links() }}
 		</div>
 	</div>
 	<!-- end product -->
 
-	
+
 	<!-- loader -->
 	<div id="fakeLoader"></div>
 	<!-- end loader -->
-	
+
     @endsection
