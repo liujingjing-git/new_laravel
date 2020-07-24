@@ -187,7 +187,7 @@
 						<div class="cart-1">
 							<div class="row">
 								<div class="col s5">
-									<img src="/img/cart-menu1.png" alt="">
+									<img src="/static/index/img/cart-menu1.png" alt="">
 								</div>
 								<div class="col s7">
 									<h5><a href="">Fashion Men's</a></h5>
@@ -222,7 +222,7 @@
 						<div class="cart-2">
 							<div class="row">
 								<div class="col s5">
-									<img src="/img/cart-menu2.png" alt="">
+									<img src="/static/index/img/cart-menu2.png" alt="">
 								</div>
 								<div class="col s7">
 									<h5><a href="">Fashion Men's</a></h5>
@@ -292,7 +292,7 @@
 	<div class="pages section">
 		<div class="container">
 			<div class="blog-single">
-				<img src="{{$goods->goods_img}}" alt="">
+				<img src="/storage/{{$goods->goods_img}}" alt="">
 				<div class="blog-single-content">
 					<h5>{{$goods->goods_name}}</h5>
 					<div class="date">
@@ -309,7 +309,12 @@
 					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint ut vitae recusandae perferendis, temporibus, ullam, tenetur eius necessitatibus aliquam sequi, eum atque ratione ipsam in aliquid vero numquam id minus!</p>
 
                     <div class="form-button">
+<<<<<<< HEAD
                         <a id="cart"><div class="btn button-default">加入购物车</div></a>
+=======
+                        <div class="btn button-default cart">加入购物车</div>
+                        <div class="btn button-default collection">收藏</div>
+>>>>>>> 61090d66e43fcc9d34d95cedc3f4efc0f0e44919
                     </div>
 
                     <div class="share-post">
@@ -321,8 +326,6 @@
 						</ul>
 					</div>
 				</div>
-
-
 				<div class="comment">
 					<h5>1条评论</h5>
 					<div class="comment-details">
@@ -386,6 +389,7 @@
 
             $.post('/carts',{'goods_id':goods_id,'buy_number':buy_number},function(result){
 
+<<<<<<< HEAD
                 if(result.code=='00001'){
                     location.href = "/login?refer="+window.location.href;
                 }
@@ -396,5 +400,15 @@
         });
      });
     </script>
+=======
+    <script src="/js/jquery.min.js"></script>
+    <script>
+>>>>>>> 61090d66e43fcc9d34d95cedc3f4efc0f0e44919
 
+		// 收藏
+		$(".collection").click(function(){
+			var goods_id = {{$goods->goods_id}};
+			alert(goods_id);
+		});
+    </script>
     @endsection
