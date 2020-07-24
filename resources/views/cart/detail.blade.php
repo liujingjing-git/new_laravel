@@ -300,13 +300,16 @@
 					</div>
                     <tr>
                         <th><strong class="orange">￥{{$goods->shop_price}}</strong></th>
-
                     </tr>
+                    <div class="j_nums">
+                        <input type="text" value="1" class="n_ipt" id="buy_number" />
+                    </div>
+
 					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi error quibusdam culpa assumenda maiores ea dicta fuga a itaque rerum deserunt, incidunt, nulla, vero amet sapiente reiciendis. Perspiciatis debitis, accusamus? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus eligendi porro deleniti quisquam omnis rem quibusdam corporis alias, et quae, assumenda unde pariatur vitae placeat veritatis nam quia, velit delectus.</p>
 					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint ut vitae recusandae perferendis, temporibus, ullam, tenetur eius necessitatibus aliquam sequi, eum atque ratione ipsam in aliquid vero numquam id minus!</p>
 
                     <div class="form-button">
-                        <a href="{{url('/cart')}}"><div class="btn button-default cart">加入购物车</div></a>
+                        <a id="cart"><div class="btn button-default">加入购物车</div></a>
                     </div>
 
                     <div class="share-post">
@@ -372,6 +375,26 @@
 	<!-- loader -->
 	<div id="fakeLoader"></div>
 	<!-- end loader -->
+    <script src="/js/jquery.min.js"></script>
+    <script>
+        $(function(){
+        //加入购物车
+        $(document).on("click","#cart",function(){
+            var buy_number = $("#buy_number").val();
+            var goods_id = {{$goods->goods_id}};
+           // alert(goods_id);
 
+            $.post('/carts',{'goods_id':goods_id,'buy_number':buy_number},function(result){
+
+                if(result.code=='00001'){
+                    location.href = "/login?refer="+window.location.href;
+                }
+                if(result.code=='00002'){
+                    location.href = "/cart";
+                }
+            },'json');
+        });
+     });
+    </script>
 
     @endsection

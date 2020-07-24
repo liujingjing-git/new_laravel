@@ -295,7 +295,7 @@
 			</div>
 			<div class="content">
 				<div class="cart-1">
-                    @foreach($cart as $k=>$v)
+                @foreach($cart as $k=>$v)
 					<div class="row">
 						<div class="col s5">
 							<h5>Image</h5>
@@ -336,7 +336,7 @@
 							<h5><i class="fa fa-trash"></i></h5>
 						</div>
 					</div>
-                      @endforeach
+                @endforeach
 				</div>
 				<div class="divider"></div>
 				<!--<div class="cart-2">
