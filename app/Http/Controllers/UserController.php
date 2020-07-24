@@ -65,17 +65,18 @@ class UserController extends Controller
         $user_name = request()->input('user_name');
         $password  = request()->input('password');
         $u = UserModel::where(['user_name'=>$user_name])->orWhere(['user_email'=>$user_name])->first();
+
+        // $result = password_verify($password,$u['password']);
+        // if($result != $u['password']){
+		// 	echo "密码不正确";die;
+        // }
+       
         if($u == NULL)
         {
             header("refresh:3;url=/user/login");
             echo "该用户不存在";die;
         }
         
-        // $password  = request()->input('password');
-        // if (!Hash::check($password, $u['password'])) {
-        //     echo "密码有误";
-        //     die;
-        // }
         //存session
         session(['user_name' => $u['user_name']]);
         
@@ -200,5 +201,35 @@ class UserController extends Controller
     public function dochangepass()
     {
         $post = request()->except('_token'); 
+        // 取session
+        $user_name = session('user_name');
+        // 获取用户信息
+        $u = UserModel::where('user_name','=',$user_name)->first();
+        // 判断密码
+        $result = password_verify($post['password'],$u['password']);
+        if($result != $u['password']){
+			echo "旧密码不正确";die;
+        }
+        //加密新密码
+        $post['password'] = password_hash($post['password'],PASSWORD_BCRYPT);
+        // 修改  加密
+        $res = UserModel::where('user_name','=',$user_name)->update(['password'=>$post['password']]);
+        //新密码修改成功 给用户发送邮件
+        if($res){
+            echo "修改密码成功 请重新登陆";
+            $data=[
+				'user_name' => $u['user_name']
+			];
+
+            Mail::send('email.passemail',$data,function($message){
+                $to = [
+                    '1807578838@qq.com',
+                ];
+                $message->to($to)->subject('修改密码成功');
+            });
+            header("refresh:2;url=/user/login");
+		}
+        
+
     }
 }

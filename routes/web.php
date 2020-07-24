@@ -23,7 +23,7 @@ Route::get('/user/vfindpass','UserController@vfindpass'); //找回密码
 Route::post('/user/findpass','UserController@findpass'); //找回密码
 Route::get('/user/resetpass','UserController@vresetpass'); //重置密码
 Route::post('/user/resetpass','UserController@resetpass'); //重置密码
-Route::get('/user/changepass','UserController@changepass'); //修改密码
+Route::get('/user/changepass','UserController@changepass')->middleware('login'); //修改密码
 Route::post('/user/dochangepass','UserController@dochangepass'); //执行修改密码
 
 
