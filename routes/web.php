@@ -33,6 +33,7 @@ Route::get('/test','IndexController@test');
 
 //购物车
 Route::get('/cart','CartController@cart'); //购物车
+Route::post('/carts','CartController@carts'); //加入购物车
 Route::get('/detail/{goods_id}','CartController@detail'); //商品详情页
 Route::get('/product','CartController@product'); //商品列表
 
