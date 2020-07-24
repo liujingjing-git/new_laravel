@@ -292,7 +292,7 @@
 	<div class="pages section">
 		<div class="container">
 			<div class="blog-single">
-				<img src="{{$goods->goods_img}}" alt="">
+				<img src="/storage/{{$goods->goods_img}}" alt="">
 				<div class="blog-single-content">
 					<h5>{{$goods->goods_name}}</h5>
 					<div class="date">
