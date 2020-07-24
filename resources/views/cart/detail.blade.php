@@ -292,7 +292,7 @@
 	<div class="pages section">
 		<div class="container">
 			<div class="blog-single">
-				<img src="{{$goods->goods_img}}" alt="">
+				<img src="/storage/{{$goods->goods_img}}" alt="">
 				<div class="blog-single-content">
 					<h5>{{$goods->goods_name}}</h5>
 					<div class="date">
@@ -300,13 +300,17 @@
 					</div>
                     <tr>
                         <th><strong class="orange">￥{{$goods->shop_price}}</strong></th>
-
                     </tr>
+                    <div class="j_nums">
+                        <input type="text" value="1" class="n_ipt" id="buy_number" />
+                    </div>
+
 					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi error quibusdam culpa assumenda maiores ea dicta fuga a itaque rerum deserunt, incidunt, nulla, vero amet sapiente reiciendis. Perspiciatis debitis, accusamus? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus eligendi porro deleniti quisquam omnis rem quibusdam corporis alias, et quae, assumenda unde pariatur vitae placeat veritatis nam quia, velit delectus.</p>
 					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint ut vitae recusandae perferendis, temporibus, ullam, tenetur eius necessitatibus aliquam sequi, eum atque ratione ipsam in aliquid vero numquam id minus!</p>
 
                     <div class="form-button">
-                        <div class="btn button-default cart">加入购物车</div>
+                        <a id="cart"><div class="btn button-default">加入购物车</div></a>
+                        <div class="btn button-default" id="collection" is_del="{{$del}}">{{$del==0 ? '收藏' : '已收藏'}}</div>
                     </div>
 
                     <div class="share-post">
@@ -317,7 +321,7 @@
 							<li><a href=""><i class="fa fa-linkedin"></i></a></li>
 						</ul>
 					</div>
-				</div>	
+				</div>
 				<div class="comment">
 					<h5>1条评论</h5>
 					<div class="comment-details">
@@ -327,13 +331,13 @@
 							</div>
 							<div class="col s9">
 								<div class="comment-title">
-									<span><strong>{{$data['user']}}</strong> | {{date('Y-m-d H:i:s',$data['add_time'])}} | <p><b>{{$data['subject']}}</b></p></span>
+									<span><strong>{{$data['user_name']}}</strong> | {{date('Y-m-d H:i:s',$data['add_time'])}} | <p><b>{{$data['subject']}}</b></p></span>
 								</div>
 								<p>{{$data['content']}}</p>
 							</div>
 						</div>
 					</div>
-				</div>	
+				</div>
 				<div class="comment-form">
 					<div class="comment-head">
 						<h5>在下面发表评论</h5>
@@ -343,12 +347,6 @@
 						<form class="col s12 form-details" action="{{url('comments')}}" method="post">
 						@csrf
 						<input type="hidden" name="goods_id" value="{{$goods->goods_id}}">
-							<div class="input-field">
-								<input type="text" required class="validate" name="user" placeholder="用户名">
-							</div>
-							<div class="input-field">
-								<input type="email" class="validate" name="email" placeholder="邮箱" required>
-							</div>
 							<div class="input-field">
 								<input type="text" class="validate" name="subject" placeholder="主题" required>
 							</div>
@@ -370,17 +368,70 @@
 	<!-- loader -->
 	<div id="fakeLoader"></div>
 	<!-- end loader -->
-
     <script src="/js/jquery.min.js"></script>
     <script>
+        $(function(){
         //加入购物车
-        $(".cart").click(function(){
-            //alert(111);
+        $(document).on("click","#cart",function(){
+            var buy_number = $("#buy_number").val();
             var goods_id = {{$goods->goods_id}};
+           // alert(goods_id);
 
-            $.get("/cart",{'goods_id':goods_id},function(result){
-                    alert(result);
-            });
+            $.post('/carts',{'goods_id':goods_id,'buy_number':buy_number},function(result){
+                if(result.code=='00001'){
+                    location.href = "/login?refer="+window.location.href;
+                }
+                if(result.code=='00002'){
+                    location.href = "/cart";
+                }
+            },'json');
         });
+     });
+    </script>
+    <script src="/js/jquery.min.js"></script>
+    <script>
+		$(document).ready(function () {
+            // 收藏
+			$("#collection").click(function(){
+				var goods_id = {{$goods->goods_id}};
+				var is_del = $("#collection").attr('is_del');
+				// alert(is_del);
+				var text=$("#collection").text();
+				var texts = "";
+				if(text=="收藏"){
+					texts="已收藏";
+				} else {
+					texts="收藏";
+				}
+				// alert(text);
+				var is_dels = "";
+				if(is_del=="1"){
+            		is_dels="0"
+        		}else{
+            		is_dels="1"
+        		}
+				// alert(is_dels);
+				var text=$('#collection').text();
+				$.ajax({
+					type: "POST",
+					url: "/collect_do",
+					data:{"goods_id":goods_id,"is_del":is_dels},
+					dataType: "json",
+					success:function(data){
+						if(data.error_no==0){
+							if(is_del == 1){
+								$("#collection").html('收藏');
+							}else{
+								$("#collection").html('已收藏');
+							}
+							// console.log(is_dels);
+							$("#collection").attr('is_del',is_dels);
+						}
+					}
+				});
+				
+			});
+        });
+
     </script>
     @endsection

@@ -295,22 +295,20 @@
             <div class="pages-head">
                 <h3>PRODUCT LIST</h3>
             </div>
+            <form action="{{url('/product')}}">
             <div class="input-field">
-                <select>
-                    <option value="">Popular</option>
-                    <option value="1">New Product</option>
-                    <option value="2">Best Sellers</option>
-                    <option value="3">Best Reviews</option>
-                    <option value="4">Low Price</option>
-                    <option value="5">High Price</option>
-                </select>
+                <input type="text" name="goods_name" value="{{$goods_name}}">
+                <div class="form-button">
+					<input class="btn button-default" value="搜 索" type="submit">
+				</div>
             </div>
+            </form>
 
             <div class="row">
              @foreach($prolist as $v)
                 <div class="col s6">
                     <div class="content">
-                        <a href="{{url('/detail/'.$v->goods_id)}}"><img src="{{$v->goods_img}}" alt=""></a>
+                        <a href="{{url('/detail/'.$v->goods_id)}}"><img src="/storage/{{$v->goods_img}}" alt=""></a>
                         <h6><a href="">{{$v->goods_name}}</a></h6>
                         <div class="price">
                             ${{$v->shop_price}} <span>${{$v->shop_price}}</span>
@@ -322,15 +320,7 @@
 
 
             </div>
-            <div class="pagination-product">
-                <ul>
-                    <li class="active">1</li>
-                    <li><a href="">2</a></li>
-                    <li><a href="">3</a></li>
-                    <li><a href="">4</a></li>
-                    <li><a href="">5</a></li>
-                </ul>
-            </div>
+                    {{ $prolist->links() }}
         </div>
     </div>
     <!-- end product -->

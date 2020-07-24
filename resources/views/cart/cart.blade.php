@@ -76,7 +76,7 @@
 				</div>
 				<div class="row">
 					<div class="col s4">
-						<a href="blog.html" class="button-link">	
+						<a href="blog.html" class="button-link">
 							<div class="menu-link">
 								<div class="icon">
 									<i class="fa fa-bold"></i>
@@ -86,7 +86,7 @@
 						</a>
 					</div>
 					<div class="col s4">
-						<a href="blog-single.html" class="button-link">	
+						<a href="blog-single.html" class="button-link">
 							<div class="menu-link">
 								<div class="icon">
 									<i class="fa fa-file-text-o"></i>
@@ -286,7 +286,7 @@
 		</div>
 	</div>
 	<!-- end cart menu -->
-	
+
 	<!-- cart -->
 	<div class="cart section">
 		<div class="container">
@@ -295,12 +295,13 @@
 			</div>
 			<div class="content">
 				<div class="cart-1">
+                @foreach($cart as $k=>$v)
 					<div class="row">
 						<div class="col s5">
 							<h5>Image</h5>
 						</div>
 						<div class="col s7">
-							<img src="img/cart1.png" alt="">
+							<img src="{{$v->goods_img}}" alt="">
 						</div>
 					</div>
 					<div class="row">
@@ -308,7 +309,7 @@
 							<h5>Name</h5>
 						</div>
 						<div class="col s7">
-							<h5><a href="">Fashion Men's</a></h5>
+							<h5><a href="">{{$v->goods_name}}</a></h5>
 						</div>
 					</div>
 					<div class="row">
@@ -324,7 +325,7 @@
 							<h5>Price</h5>
 						</div>
 						<div class="col s7">
-							<h5>$20</h5>
+							<h5>${{$v->shop_price}}</h5>
 						</div>
 					</div>
 					<div class="row">
@@ -335,9 +336,10 @@
 							<h5><i class="fa fa-trash"></i></h5>
 						</div>
 					</div>
+                @endforeach
 				</div>
 				<div class="divider"></div>
-				<div class="cart-2">
+				<!--<div class="cart-2">
 					<div class="row">
 						<div class="col s5">
 							<h5>Image</h5>
@@ -378,7 +380,7 @@
 							<h5><i class="fa fa-trash"></i></h5>
 						</div>
 					</div>
-				</div>
+				</div>-->
 			</div>
 			<div class="total">
 				<div class="row">
@@ -414,5 +416,5 @@
 	<!-- loader -->
 	<div id="fakeLoader"></div>
 	<!-- end loader -->
-	
+
     @endsection

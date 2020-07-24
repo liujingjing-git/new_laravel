@@ -387,10 +387,10 @@
                 @foreach($is_new as $v)
                 <div class="col s6">
                     <div class="content">
-                        <a href="/detail"> <img src="{{$v->goods_img}}" alt=""></a>
+                        <a href="{{url('/detail/'.$v->goods_id)}}"> <img src="/storage/{{$v->goods_img}}" alt=""></a>
                         <h6><a href="">{{$v->goods_name}}</a></h6>
                         <div class="price">
-                            ${{$v->shop_price}} <span></span>
+                            ${{$v->shop_price}}<span></span>
                         </div>
                         <a href="/cart"><button class="btn button-default">加入购物车</button></a>
                     </div>
@@ -426,7 +426,7 @@
                 @foreach($best as $v)
                 <div class="col s6">
                     <div class="content">
-                        <a href="/detail"> <img src="{{$v->goods_img}}" alt=""></a>
+                        <a href="{{url('/detail/'.$v->goods_id)}}"> <img src="/storage/{{$v->goods_img}}" alt=""></a>
                         <h6>{{$v->goods_name}}</h6>
                         <div class="price">
                             ${{$v->shop_price}}
