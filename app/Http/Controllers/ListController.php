@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Model\CommentsModel;
+use App\Model\UserModel;
 
 class ListController extends Controller
 {
@@ -27,18 +28,20 @@ class ListController extends Controller
      */
     public function comments(Request $request)
     {
-
-        $user = $request->input('user');
-        $email = $request->input('email');
+        $user_name = session('user_name');
+        $user_id = UserModel::where(['user_name'=>$user_name])->value('user_id');
+        // TODO 判断是否登陆
+        if(empty($user_id)){
+            echo "请先登录!";
+            header("refresh:1;url=/user/login");
+        }
         $subject = $request->input('subject');
         $content = $request->input('content');
         $goods_id = $request->input('goods_id');
 
         $add_time = time();
-        // TODO 判断是否登陆
         $data = [
-            'user'  => $user,
-            'email' => $email,
+            'user_id'   => $user_id,
             'subject'   => $subject,
             'content'   => $content,
             'add_time'  => $add_time,
