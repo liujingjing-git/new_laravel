@@ -39,7 +39,7 @@ Route::get('/product','CartController@product'); //商品列表
 
 
 //我的收藏
-Route::get('/collection','ListController@collection'); //收藏页
+Route::get('/collection','ListController@collection')->middleware('login'); //收藏页
 Route::post('/collect_do','ListController@collectDo'); //收藏页
 Route::get('/blog','ListController@blog');//;历史记录
 Route::post('/comments','ListController@comments');  //添加评论

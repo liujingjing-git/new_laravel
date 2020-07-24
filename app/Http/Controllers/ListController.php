@@ -14,7 +14,18 @@ class ListController extends Controller
      */
     public function collection()
     {
-        return view('list/collection');
+        $user_id = $this->userId();
+        if(empty($user_id)){
+            echo "请先登录!";
+            header("refresh:1;url=/user/login");die;
+        }
+        $collect = CollectModel::join('p_goods','p_goods.goods_id','=','p_collection.goods_id')
+                                ->where(['user_id'=>$user_id])
+                                ->get();
+        if($collect){
+            $collect = $collect->toArray();
+        }
+        return view('list/collection',['collect'=>$collect]);
     }
 
     /**
