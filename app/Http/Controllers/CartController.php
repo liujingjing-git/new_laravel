@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Model\CommentsModel;
 use App\Model\GoodsModel;
 use App\Model\CartModel;
+use App\Model\CollectModel;
 
 class CartController extends Controller
 {
@@ -22,9 +23,19 @@ class CartController extends Controller
      */
     public function detail($goods_id)
     {
-        $comment = CommentsModel::where(['goods_id'=>$goods_id])->orderBy('add_time','DESC')->first();
+        $comment = CommentsModel::join('p_user','p_user.user_id','=','p_comments.user_id')
+                                ->where(['goods_id'=>$goods_id])
+                                ->orderBy('add_time','DESC')
+                                ->first();
+        if($comment){
+            $comment = $comment->toArray();
+        }
+                        
+        $user_id = $this->userId();
+        $del = CollectModel::where(['goods_id'=>$goods_id,'user_id'=>$user_id])->value('is_del');
+        // print_r($comment);die;
         $goods = GoodsModel::find($goods_id);
-        return view('cart/detail',['goods'=>$goods,'data'=>$comment]);
+        return view('cart/detail',['goods'=>$goods,'data'=>$comment,'del'=>$del]);
     }
     /**
      * 商品列表

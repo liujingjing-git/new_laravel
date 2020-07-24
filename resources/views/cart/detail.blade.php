@@ -307,7 +307,7 @@
 
                     <div class="form-button">
                         <div class="btn button-default cart">加入购物车</div>
-                        <div class="btn button-default collection">收藏</div>
+                        <div class="btn button-default" id="collection" is_del="{{$del}}">{{$del==0 ? '收藏' : '已收藏'}}</div>
                     </div>
 
                     <div class="share-post">
@@ -328,7 +328,7 @@
 							</div>
 							<div class="col s9">
 								<div class="comment-title">
-									<span><strong>{{$data['user']}}</strong> | {{date('Y-m-d H:i:s',$data['add_time'])}} | <p><b>{{$data['subject']}}</b></p></span>
+									<span><strong>{{$data['user_name']}}</strong> | {{date('Y-m-d H:i:s',$data['add_time'])}} | <p><b>{{$data['subject']}}</b></p></span>
 								</div>
 								<p>{{$data['content']}}</p>
 							</div>
@@ -344,12 +344,6 @@
 						<form class="col s12 form-details" action="{{url('comments')}}" method="post">
 						@csrf
 						<input type="hidden" name="goods_id" value="{{$goods->goods_id}}">
-							<div class="input-field">
-								<input type="text" required class="validate" name="user" placeholder="用户名">
-							</div>
-							<div class="input-field">
-								<input type="email" class="validate" name="email" placeholder="邮箱" required>
-							</div>
 							<div class="input-field">
 								<input type="text" class="validate" name="subject" placeholder="主题" required>
 							</div>
@@ -375,10 +369,49 @@
     <script src="/js/jquery.min.js"></script>
     <script>
 
-		// 收藏
-		$(".collection").click(function(){
-			var goods_id = {{$goods->goods_id}};
-			alert(goods_id);
-		});
+	
+		$(document).ready(function () {
+            // 收藏
+			$("#collection").click(function(){
+				var goods_id = {{$goods->goods_id}};
+				var is_del = $("#collection").attr('is_del');
+				// alert(is_del);
+				var text=$("#collection").text();
+				var texts = "";
+				if(text=="收藏"){
+					texts="已收藏";
+				} else {
+					texts="收藏";
+				}
+				// alert(text);
+				var is_dels = "";
+				if(is_del=="1"){
+            		is_dels="0"
+        		}else{
+            		is_dels="1"
+        		}
+				// alert(is_dels);
+				var text=$('#collection').text();
+				$.ajax({
+					type: "POST",
+					url: "/collect_do",
+					data:{"goods_id":goods_id,"is_del":is_dels},
+					dataType: "json",
+					success:function(data){
+						if(data.error_no==0){
+							if(is_del == 1){
+								$("#collection").html('收藏');
+							}else{
+								$("#collection").html('已收藏');
+							}
+							// console.log(is_dels);
+							$("#collection").attr('is_del',is_dels);
+						}
+					}
+				});
+				
+			});
+        });
+
     </script>
     @endsection
