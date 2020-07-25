@@ -44,11 +44,11 @@
 				<h2>欢迎   {{session('user_name') }}</h2>
 			</li>
 			<li><a href="setting.html"><i class="fa fa-cog"></i>Settings</a></li>
-			<li><a href="about-us.html"><i class="fa fa-user"></i>About Us</a></li>
+			<li><a href="{{url('/user/center')}}"><i class="fa fa-user"></i>个人中心</a></li>
 			<li><a href="contact.html"><i class="fa fa-envelope-o"></i>Contact Us</a></li>
-			<li><a href="{{url('user/login')}}"><i class="fa fa-sign-in"></i>Login</a></li>
-			<li><a href="{{url('user/reg')}}"><i class="fa fa-user-plus"></i>Register</a></li>
-			<li><a href="{{url('user/login_out')}}"></i>autologin</a></li>
+			<li><a href="{{url('user/login')}}"><i class="fa fa-sign-in"></i>登录</a></li>
+			<li><a href="{{url('user/reg')}}"><i class="fa fa-user-plus"></i>注册</a></li>
+			<li><a href="{{url('user/login_out')}}"></i>退出登陆</a></li>
 
 		</ul>
 	</div>

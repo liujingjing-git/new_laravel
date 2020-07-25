@@ -15,10 +15,6 @@ class ListController extends Controller
     public function collection()
     {
         $user_id = $this->userId();
-        if(empty($user_id)){
-            echo "请先登录!";
-            header("refresh:1;url=/user/login");die;
-        }
         $collect = CollectModel::join('p_goods','p_goods.goods_id','=','p_collection.goods_id')
                                 ->where(['user_id'=>$user_id])
                                 ->get();
@@ -97,5 +93,16 @@ class ListController extends Controller
             echo "网络异常,请稍后重试...";
             header("refresh:1;url=/detail/".$goods_id);
         }
+    }
+
+
+    /**
+     * 个人中心
+     */
+    public function center()
+    {
+        $user_id = $this->userId();
+        $userInfo = UserModel::where(['user_id'=>$user_id])->first();
+        return view('user.center',['userInfo'=>$userInfo]);
     }
 }

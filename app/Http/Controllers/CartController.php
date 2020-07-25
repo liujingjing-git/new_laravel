@@ -16,7 +16,6 @@ class CartController extends Controller
      */
     public function cart()
     {
-
         $cart=GoodsModel::orderby('goods_id','DESC')->limit(2)->get();
         return view('/cart/cart',['cart'=>$cart]);
     }
@@ -24,7 +23,7 @@ class CartController extends Controller
     public function carts()
     {
         $goods_id = request()->goods_id;
-//        echo ($goods_id);exit;
+        // echo ($goods_id);exit;
         $buy_number = request()->buy_number;
         $user_name = session('user_name');
         $user_id=UserModel::where('user_name',$user_name)->value('user_id');
@@ -62,6 +61,7 @@ class CartController extends Controller
         $goods = GoodsModel::find($goods_id);
         return view('cart/detail',['goods'=>$goods,'data'=>$comment,'del'=>$del]);
     }
+    
     /**
      * 商品列表
      */
