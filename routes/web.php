@@ -47,3 +47,9 @@ Route::post('/comment_list','ListController@commentList');  //评论列表
 Route::get('/user/center','ListController@center')->middleware('login');  //个人中心
 
 
+
+Route::prefix('/cron/')->group(function(){
+    Route::get('codec','VideoController@codec');
+});
+
+

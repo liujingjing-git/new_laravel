@@ -8,6 +8,7 @@ use App\Model\GoodsModel;
 use App\Model\CartModel;
 use App\Model\CollectModel;
 use App\Model\UserModel;
+use App\Model\VideoModel;
 
 class CartController extends Controller
 {
@@ -59,7 +60,15 @@ class CartController extends Controller
         $del = CollectModel::where(['goods_id'=>$goods_id,'user_id'=>$user_id])->value('is_del');
         // print_r($comment);die;
         $goods = GoodsModel::find($goods_id);
-        return view('cart/detail',['goods'=>$goods,'data'=>$comment,'del'=>$del]);
+
+        $video = VideoModel::where(['goods_id'=>$goods_id])->first();
+        if($video){
+            $goods['m3u8'] = $video->m3u8;
+        }else{
+            $goods['m3u8'] = "video/default.mp4"; 
+        }
+        // print_r($goods->toArray());die;
+        return view('cart/detail',['goods'=>$goods,'data'=>$comment,'del'=>$del,'video'=>$video]);
     }
     
     /**
