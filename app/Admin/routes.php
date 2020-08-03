@@ -17,4 +17,6 @@ Route::group([
     $router->resource('cartgory', CartController::class);
     $router->resource('order', OrderController::class);
     $router->resource('order_goods', OrderGoodsController::class);
+    $router->resource('video', VideoController::class);
+
 });

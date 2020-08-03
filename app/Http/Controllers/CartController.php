@@ -8,6 +8,7 @@ use App\Model\GoodsModel;
 use App\Model\CartModel;
 use App\Model\CollectModel;
 use App\Model\UserModel;
+use App\Model\VideoModel;
 
 class CartController extends Controller
 {
@@ -54,14 +55,27 @@ class CartController extends Controller
         if($comment){
             $comment = $comment->toArray();
         }
-                        
+
         $user_id = $this->userId();
         $del = CollectModel::where(['goods_id'=>$goods_id,'user_id'=>$user_id])->value('is_del');
         // print_r($comment);die;
         $goods = GoodsModel::find($goods_id);
-        return view('cart/detail',['goods'=>$goods,'data'=>$comment,'del'=>$del]);
+        $v = VideoModel::where(['goods_id'=>$goods_id])->first();
+        if($v)
+        {
+            $goods_info['m3u8'] = $v->m3u8;
+        }else{
+            $goods_info['m3u8'] = "video/default.mp4";        //默认视频
+        }
+        $data = [
+            'goodss' => $goods_info,
+            'goods'=>$goods,
+            'data'=>$comment,
+            'del'=>$del
+        ];
+        return view('cart/detail',$data);
     }
-    
+
     /**
      * 商品列表
      */
@@ -86,4 +100,6 @@ class CartController extends Controller
         ];
         return json_encode($data,true);
     }
+
+
 }

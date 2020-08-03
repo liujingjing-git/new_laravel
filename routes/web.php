@@ -30,6 +30,7 @@ Route::post('/user/dochangepass','UserController@dochangepass'); //执行修改�
 //首页
 Route::get('/','IndexController@index');
 Route::get('/test','IndexController@test');
+Route::get('/codec','Corn\VoderController@codec');
 
 //购物车
 Route::get('/cart','CartController@cart'); //购物车

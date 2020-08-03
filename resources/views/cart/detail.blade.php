@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="https://g.alicdn.com/de/prismplayer/2.8.8/skins/default/aliplayer-min.css" />
 @extends('layouts.shop')
 
 @section('title', '商品详情页')
@@ -313,21 +314,14 @@
                         <div class="btn button-default" id="collection" is_del="{{$del}}">{{$del==0 ? '收藏' : '已收藏'}}</div>
                     </div>
 
-                    <div class="share-post">
-						<ul>
-							<li><a href=""><i class="fa fa-facebook"></i></a></li>
-							<li><a href=""><i class="fa fa-twitter"></i></a></li>
-							<li><a href=""><i class="fa fa-google"></i></a></li>
-							<li><a href=""><i class="fa fa-linkedin"></i></a></li>
-						</ul>
-					</div>
+                    <div class="prism-player" id="player-con"></div>
 				</div>
 				<div class="comment">
 					<h5>1条评论</h5>
 					<div class="comment-details">
 						<div class="row">
 							<div class="col s3">
-								<img src="img/user-comment.jpg" alt="">
+{{--								<img src="img/user-comment.jpg" alt="">--}}
 							</div>
 							<div class="col s9">
 								<div class="comment-title">
@@ -429,9 +423,28 @@
 						}
 					}
 				});
-				
+
 			});
         });
-
     </script>
-    @endsection
+    <script type="text/javascript" charset="utf-8" src="https://g.alicdn.com/de/prismplayer/2.8.8/aliplayer-min.js"></script>
+    <script>
+    var player = new Aliplayer({
+            "id": "player-con",
+            "source": "/storage/{!! $goodss['m3u8'] !!}",
+            "width": "50%",
+            "height": "400px",
+            "autoplay": true,
+            "isLive": false,
+            "rePlay": false,
+            "playsinline": true,
+            "preload": true,
+            "controlBarVisibility": "hover",
+            "useH5Prism": true
+        }, function (player) {
+            console.log("The player is created");
+        }
+    );
+</script>
+@endsection
+
