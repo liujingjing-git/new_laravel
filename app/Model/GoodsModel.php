@@ -12,9 +12,4 @@ class GoodsModel extends Model
      protected $primaryKey = "goods_id";
      public $timestamps = false;
      protected $guarded = [];
-
-
-   
-
-
 }

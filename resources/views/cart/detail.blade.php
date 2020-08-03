@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="https://g.alicdn.com/de/prismplayer/2.8.8/skins/default/aliplayer-min.css" />
 @extends('layouts.shop')
 
 @section('title', '商品详情页')
@@ -304,12 +305,13 @@
                     </tr>
 					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi error quibusdam culpa assumenda maiores ea dicta fuga a itaque rerum deserunt, incidunt, nulla, vero amet sapiente reiciendis. Perspiciatis debitis, accusamus? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus eligendi porro deleniti quisquam omnis rem quibusdam corporis alias, et quae, assumenda unde pariatur vitae placeat veritatis nam quia, velit delectus.</p>
 					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint ut vitae recusandae perferendis, temporibus, ullam, tenetur eius necessitatibus aliquam sequi, eum atque ratione ipsam in aliquid vero numquam id minus!</p>
-
+                    <div class="prism-player" id="player-con"></div>
                     <div class="form-button">
                         <div class="btn button-default cart">加入购物车</div>
                         <div class="btn button-default collection">收藏</div>
                     </div>
-
+                    {{--视频--}}
+                    
                     <div class="share-post">
 						<ul>
 							<li><a href=""><i class="fa fa-facebook"></i></a></li>
@@ -318,13 +320,14 @@
 							<li><a href=""><i class="fa fa-linkedin"></i></a></li>
 						</ul>
 					</div>
+                    <div class="prism-player" id="player-con"></div>
 				</div>
 				<div class="comment">
 					<h5>1条评论</h5>
 					<div class="comment-details">
 						<div class="row">
 							<div class="col s3">
-								<img src="img/user-comment.jpg" alt="">
+{{--								<img src="img/user-comment.jpg" alt="">--}}
 							</div>
 							<div class="col s9">
 								<div class="comment-title">
@@ -368,6 +371,14 @@
 	<!-- end single post -->
 
 
+
+    {{--    视频播放器--}}
+
+
+
+
+
+
 	<!-- loader -->
 	<div id="fakeLoader"></div>
 	<!-- end loader -->
@@ -381,4 +392,24 @@
 			alert(goods_id);
 		});
     </script>
-    @endsection
+<script type="text/javascript" charset="utf-8" src="https://g.alicdn.com/de/prismplayer/2.8.8/aliplayer-min.js"></script>
+<script>
+    var player = new Aliplayer({
+            "id": "player-con",
+            "source": "/storage/{!! $goods_info['m3u8'] !!}",
+            "width": "100%",
+            "height": "500px",
+            "autoplay": true,
+            "isLive": false,
+            "rePlay": false,
+            "playsinline": true,
+            "preload": true,
+            "controlBarVisibility": "hover",
+            "useH5Prism": true
+        }, function (player) {
+            console.log("The player is created");
+        }
+    );
+</script>
+@endsection
+

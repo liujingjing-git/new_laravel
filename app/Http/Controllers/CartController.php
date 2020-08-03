@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Model\VoderModel;
 use Illuminate\Http\Request;
 use App\Model\CommentsModel;
 use App\Model\GoodsModel;
@@ -24,7 +25,19 @@ class CartController extends Controller
     {
         $comment = CommentsModel::where(['goods_id'=>$goods_id])->orderBy('add_time','DESC')->first();
         $goods = GoodsModel::find($goods_id);
-        return view('cart/detail',['goods'=>$goods,'data'=>$comment]);
+        $vidor = VoderModel::where(['goods_id'=>$goods_id])->first();
+
+        if($vidor){
+            $goods_info['m3u8'] = $vidor->m3u8;
+        }else{
+            $goods_info['m3u8'] = '/video_out/456.m3u8';
+        }
+        $data=[
+            'goods'=>$goods,
+            'data'=>$comment,
+            'goods_info'=>$goods_info
+        ];
+        return view('cart/detail',$data);
     }
     /**
      * 商品列表

@@ -43,3 +43,12 @@ Route::get('/blog','ListController@blog');//;历史记录
 Route::post('/comments','ListController@comments');  //添加评论
 
 
+//测试方法
+Route::get('/redis','TextController@text'); //redis练习
+
+//视屏
+Route::get('/vedor/text','TextController@vedor');
+Route::post('/vedor/text1','TextController@vedors');
+
+Route::get('/list/code','Corn\VoderController@codec');
+
